@@ -2,15 +2,20 @@
 
 # fable5-prompt-optimizer
 
-A [Claude Skill](https://docs.claude.com/en/docs/claude-code/skills) that automatically rewrites an existing prompt (system prompt or task instruction) to follow the recommended patterns from Anthropic's official "[Prompting Claude Fable 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5)" guide. Works in both [claude.ai (chat)](https://claude.ai) and [Claude Code](https://docs.claude.com/en/docs/claude-code).
+A [Claude Skill](https://docs.claude.com/en/docs/claude-code/skills) that turns "I want to do X" into a prompt that follows the recommended patterns from Anthropic's official "[Prompting Claude Fable 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5)" guide — no existing prompt required. If you already have a prompt, it can also rewrite that one to comply with the guide. Works in both [claude.ai (chat)](https://claude.ai) and [Claude Code](https://docs.claude.com/en/docs/claude-code).
 
 ## What it does
 
-The skill analyzes a prompt you provide (a system prompt, agent instructions, a one-off task request, etc.), selects only the behavior-tuning patterns recommended for Claude Fable 5 / Mythos 5 that actually apply to that prompt (summarized as checklist items G1–G13 in [`references/fable5-guidelines.md`](fable5-prompt-optimizer/references/fable5-guidelines.md)), and produces a rewritten Markdown file.
+The skill accepts two kinds of input:
 
-- The original intent and task content of the prompt is never changed. Only Fable-5-specific "behavior tuning" instructions are added or adjusted, and only where relevant.
-- Instead of pasting in every guideline section mechanically, it looks at what kind of prompt you gave it (an agentic prompt, a one-off generation task, a long-running autonomous task, etc.) and applies only the matching items.
-- The output includes both the "final rewritten prompt" and a "summary of changes" (what was added or modified, and which guideline item it maps to).
+- **Just a description of what you want** (e.g. "Create a prompt for a customer-support chatbot that handles returns") → it drafts a prompt from scratch that satisfies your goal, then applies the Fable 5 recommended patterns.
+- **An existing prompt** (a system prompt, agent instructions, a one-off task request, etc.) → it keeps the content and intent intact and rewrites it to follow the recommended patterns.
+
+In both cases, it selects only the behavior-tuning patterns recommended for Claude Fable 5 / Mythos 5 that actually apply (summarized as checklist items G1–G13 in [`references/fable5-guidelines.md`](fable5-prompt-optimizer/references/fable5-guidelines.md)), and produces the result as a Markdown file.
+
+- Your stated goal, or the original intent and task content of an existing prompt, is never changed. Only Fable-5-specific "behavior tuning" instructions are added or adjusted, and only where relevant.
+- Instead of pasting in every guideline section mechanically, it looks at what kind of prompt is involved (an agentic prompt, a one-off generation task, a long-running autonomous task, etc.) and applies only the matching items.
+- The output includes both the "final prompt" and a "summary of changes" (what was added or modified, and which guideline item it maps to).
 
 ## Installation
 
@@ -32,13 +37,20 @@ Upload the `fable5-prompt-optimizer/` folder as a custom skill from claude.ai's 
 
 ## Usage
 
-Paste the prompt you want to optimize, then ask something like the following (the same phrasing triggers the skill in both Claude Code and claude.ai):
+The same phrasing triggers the skill in both Claude Code and claude.ai.
+
+**Creating a prompt from a description** (no existing prompt needed)
+
+- "Create a Fable 5 prompt for a customer support chatbot that handles returns"
+- "Make me a Fable 5 prompt for a coding agent that runs unattended overnight"
+
+**Rewriting a prompt you already have** (paste the prompt text)
 
 - "Optimize this prompt for Fable 5"
 - "Rewrite this system prompt for Claude Fable 5"
 - "Make this prompt comply with the Fable 5 prompt guide"
 
-Once triggered, the skill determines the type of prompt (system prompt, one-off task, autonomous agent, etc.), applies only the relevant guideline items, and outputs the finished prompt as a Markdown file.
+Once triggered, the skill first determines whether the input is a description of a goal or an existing prompt. For a goal description, it drafts a prompt from scratch to satisfy that goal; for an existing prompt, it works from that text as-is. It then determines the type of prompt (system prompt, one-off task, autonomous agent, etc.), applies only the relevant guideline items, and outputs the finished prompt as a Markdown file.
 
 ## Guideline items (G1–G13)
 

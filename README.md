@@ -2,15 +2,20 @@
 
 # fable5-prompt-optimizer
 
-Anthropic公式ドキュメント「[Prompting Claude Fable 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5)」の推奨パターンに準拠する形へ、既存のプロンプト（システムプロンプトやタスク指示文）を自動で書き直す [Claude Skill](https://docs.claude.com/en/docs/claude-code/skills) です。[claude.ai（チャット）](https://claude.ai)・[Claude Code](https://docs.claude.com/en/docs/claude-code) の両方で利用できます。
+「〇〇をしたい」というやりたいことを伝えるだけで、Anthropic公式ドキュメント「[Prompting Claude Fable 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5)」の推奨パターンに準拠したプロンプトを作ってくれる [Claude Skill](https://docs.claude.com/en/docs/claude-code/skills) です。すでに書いたプロンプトがあれば、それをガイド準拠の形に書き直すこともできます。[claude.ai（チャット）](https://claude.ai)・[Claude Code](https://docs.claude.com/en/docs/claude-code) の両方で利用できます。
 
 ## これは何か
 
-ユーザーが入力した既存のプロンプト（システムプロンプト、エージェント指示文、タスク依頼文など）を分析し、Claude Fable 5 / Mythos 5 向けに推奨される振る舞い調整パターン（[`references/fable5-guidelines.md`](fable5-prompt-optimizer/references/fable5-guidelines.md) にG1〜G13としてまとめたチェックリスト）の中から、プロンプトの性質に合った項目だけを選んで反映し、Markdownファイルとして出力します。
+次の2つの入力に対応しています。
 
-- 元のプロンプトの目的・タスク内容そのものは変更しません。あくまで「振る舞い調整の指示」を適切な箇所に追加・修正するのが目的です。
+- **やりたいことの説明のみ**（例:「返品対応をするカスタマーサポートのチャットボット用プロンプトを作って」）→ 目的を満たすプロンプトをゼロから起草し、Fable 5向けの推奨パターンを反映して仕上げます。
+- **既存のプロンプト**（システムプロンプト、エージェント指示文、タスク依頼文など）→ 内容や意図はそのままに、Fable 5 / Mythos 5 向けに推奨される振る舞い調整パターンを反映して書き直します。
+
+どちらの場合も、Claude Fable 5 / Mythos 5 向けの振る舞い調整パターン（[`references/fable5-guidelines.md`](fable5-prompt-optimizer/references/fable5-guidelines.md) にG1〜G13としてまとめたチェックリスト）の中から、プロンプトの性質に合った項目だけを選んで反映し、Markdownファイルとして出力します。
+
+- ユーザーが伝えた目的・元のプロンプトの内容そのものは変更しません。あくまで「振る舞い調整の指示」を適切な箇所に追加・修正するのが目的です。
 - ガイドの全項目を機械的に貼り付けるのではなく、プロンプトの種別（エージェント系か、単発の生成タスクか、長時間実行が想定されるか等）を見て、関連する項目だけを選んで反映します。
-- 出力には「最適化後のプロンプト本文」と「変更点の要約（何をどのガイドライン項目に基づいて追加/修正したか）」の両方が含まれます。
+- 出力には「最終プロンプト本文」と「変更点の要約（何をどのガイドライン項目に基づいて追加/修正したか）」の両方が含まれます。
 
 ## インストール方法
 
@@ -32,7 +37,15 @@ claude.aiの「Capabilities」設定からカスタムスキルとして `fable5
 
 ## 使い方
 
-最適化したいプロンプトを貼り付けた上で、次のように依頼してください（Claude Code・claude.aiどちらでも同じ発話で起動します）。
+Claude Code・claude.aiどちらでも同じ発話で起動します。
+
+**やりたいことを伝えて新規作成する場合**（プロンプト本文なしでOK）
+
+- 「返品対応をするカスタマーサポートのチャットボット用プロンプトを、Fable 5向けに作って」
+- 「一晩中動かすコーディングエージェント用のプロンプトを、Fable 5用に作って」
+- "create a Fable 5 prompt for a customer support chatbot that handles returns"
+
+**すでに書いたプロンプトを書き直す場合**（プロンプト本文を貼り付け）
 
 - 「このプロンプトをFable 5用に最適化して」
 - 「このシステムプロンプトをFable 5向けに直して」
@@ -40,7 +53,7 @@ claude.aiの「Capabilities」設定からカスタムスキルとして `fable5
 - "optimize this prompt for Fable 5"
 - "rewrite this system prompt for Claude Fable 5"
 
-スキルが起動すると、プロンプトの種別（システムプロンプトか単発タスクか自律実行エージェント向けかなど）を判定し、該当するガイドライン項目のみを反映した完成版プロンプトをMarkdownファイルとして出力します。
+スキルが起動すると、まず入力が「やりたいことの説明」か「既存プロンプト」かを判定します。前者の場合は目的を満たすプロンプトをゼロから起草し、後者の場合はその内容をそのまま活かします。その上でプロンプトの種別（システムプロンプトか単発タスクか自律実行エージェント向けかなど）を判定し、該当するガイドライン項目のみを反映した完成版プロンプトをMarkdownファイルとして出力します。
 
 ## ガイドライン項目一覧（G1〜G13）
 
