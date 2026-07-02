@@ -1,5 +1,7 @@
 日本語 | [English](README.en.md)
 
+[![Claude Platform Docs: Prompting Claude Fable 5](https://img.shields.io/badge/Claude%20Platform%20Docs-Prompting%20Claude%20Fable%205-f2f1ec?style=for-the-badge&labelColor=1a1a1a)](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5)
+
 # fable5-prompt-optimizer
 
 「〇〇をしたい」というやりたいことを伝えるだけで、Anthropic公式ドキュメント「[Prompting Claude Fable 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5)」の推奨パターンに準拠したプロンプトを作ってくれる [Claude Skill](https://docs.claude.com/en/docs/claude-code/skills) です。すでに書いたプロンプトがあれば、それをガイド準拠の形に書き直すこともできます。[claude.ai（チャット）](https://claude.ai)・[Claude Code](https://docs.claude.com/en/docs/claude-code) の両方で利用できます。
@@ -33,7 +35,16 @@ cp -r fable5-prompt-optimizer/fable5-prompt-optimizer ~/.claude/skills/fable5-pr
 
 ### claude.ai（チャット）で使う場合
 
-claude.aiの「設定」→「カスタマイズ」→「スキル」から `fable5-prompt-optimizer/` フォルダをアップロードしてください（[スキルの作成方法](https://support.claude.com/en/articles/12512180)を参照）。
+まず `fable5-prompt-optimizer/` フォルダをローカルにダウンロードします。以下のいずれかの方法で取得してください。
+
+- **GitHubからZIPでダウンロードする場合:** このリポジトリのページ（[https://github.com/sho-ai-magic/fable5-prompt-optimizer](https://github.com/sho-ai-magic/fable5-prompt-optimizer)）で緑色の「Code」ボタン →「Download ZIP」を選択し、解凍後にできる `fable5-prompt-optimizer-main/fable5-prompt-optimizer/` フォルダを使用します。
+- **git cloneで取得する場合:**
+  ```bash
+  git clone https://github.com/sho-ai-magic/fable5-prompt-optimizer.git
+  ```
+  クローンしてできた `fable5-prompt-optimizer/fable5-prompt-optimizer/` フォルダを使用します。
+
+取得した `fable5-prompt-optimizer/` フォルダを、claude.aiの「設定」→「カスタマイズ」→「スキル」からアップロードしてください（[スキルの作成方法](https://support.claude.com/en/articles/12512180)を参照）。
 
 ## 使い方
 

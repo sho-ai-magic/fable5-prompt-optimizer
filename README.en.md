@@ -1,5 +1,7 @@
 [日本語](README.md) | English
 
+[![Claude Platform Docs: Prompting Claude Fable 5](https://img.shields.io/badge/Claude%20Platform%20Docs-Prompting%20Claude%20Fable%205-f2f1ec?style=for-the-badge&labelColor=1a1a1a)](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5)
+
 # fable5-prompt-optimizer
 
 A [Claude Skill](https://docs.claude.com/en/docs/claude-code/skills) that turns "I want to do X" into a prompt that follows the recommended patterns from Anthropic's official "[Prompting Claude Fable 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5)" guide — no existing prompt required. If you already have a prompt, it can also rewrite that one to comply with the guide. Works in both [claude.ai (chat)](https://claude.ai) and [Claude Code](https://docs.claude.com/en/docs/claude-code).
@@ -33,7 +35,16 @@ To scope it to a single project instead, place it under that project's `.claude/
 
 ### Using it in claude.ai (chat)
 
-Upload the `fable5-prompt-optimizer/` folder from claude.ai's "Settings" → "Customize" → "Skills" (see [how to create a skill](https://support.claude.com/en/articles/12512180)).
+First, download the `fable5-prompt-optimizer/` folder to your machine using one of the following:
+
+- **Download as a ZIP from GitHub:** On this repo's page ([https://github.com/sho-ai-magic/fable5-prompt-optimizer](https://github.com/sho-ai-magic/fable5-prompt-optimizer)), click the green "Code" button → "Download ZIP", then unzip it and use the `fable5-prompt-optimizer-main/fable5-prompt-optimizer/` folder.
+- **Clone with git:**
+  ```bash
+  git clone https://github.com/sho-ai-magic/fable5-prompt-optimizer.git
+  ```
+  Use the `fable5-prompt-optimizer/fable5-prompt-optimizer/` folder produced by the clone.
+
+Then upload that `fable5-prompt-optimizer/` folder from claude.ai's "Settings" → "Customize" → "Skills" (see [how to create a skill](https://support.claude.com/en/articles/12512180)).
 
 ## Usage
 
