@@ -4,7 +4,7 @@
 
 「〇〇をしたい」というやりたいことを伝えるだけで、Anthropic公式ドキュメント「[Prompting Claude Fable 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5)」の推奨パターンに準拠したプロンプトを作ってくれる [Claude Skill](https://docs.claude.com/en/docs/claude-code/skills) です。すでに書いたプロンプトがあれば、それをガイド準拠の形に書き直すこともできます。[claude.ai（チャット）](https://claude.ai)・[Claude Code](https://docs.claude.com/en/docs/claude-code) の両方で利用できます。
 
-## これは何か
+## 概要説明
 
 次の2つの入力に対応しています。
 
@@ -33,7 +33,7 @@ cp -r fable5-prompt-optimizer/fable5-prompt-optimizer ~/.claude/skills/fable5-pr
 
 ### claude.ai（チャット）で使う場合
 
-claude.aiの「Capabilities」設定からカスタムスキルとして `fable5-prompt-optimizer/` フォルダをアップロードしてください（[スキルの作成方法](https://support.claude.com/en/articles/12512180)を参照）。
+claude.aiの「設定」→「カスタマイズ」→「スキル」から `fable5-prompt-optimizer/` フォルダをアップロードしてください（[スキルの作成方法](https://support.claude.com/en/articles/12512180)を参照）。
 
 ## 使い方
 
