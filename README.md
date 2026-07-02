@@ -1,3 +1,5 @@
+日本語 | [English](README.en.md)
+
 # fable5-prompt-optimizer
 
 Anthropic公式ドキュメント「[Prompting Claude Fable 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5)」の推奨パターンに準拠する形へ、既存のプロンプト（システムプロンプトやタスク指示文）を自動で書き直す [Claude Skill](https://docs.claude.com/en/docs/claude-code/skills) です。[claude.ai（チャット）](https://claude.ai)・[Claude Code](https://docs.claude.com/en/docs/claude-code) の両方で利用できます。
